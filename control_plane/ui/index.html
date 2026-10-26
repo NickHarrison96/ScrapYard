@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ADRE - Graph View</title>
+  <link rel="stylesheet" href="styles/early2000s.css" />
+  <script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+</head>
+<body>
+
+<!-- Outer classic window frame -->
+<div id="desk">
+
+  <!-- Win32-style main window -->
+  <div id="mainwin" class="win">
+
+    <!-- Title bar -->
+    <div class="titlebar">
+      <div class="titlebar-icon">&#9632;</div>
+      <div class="titlebar-text">ADRE Control Plane - [hello_world] - Graph</div>
+      <div class="titlebar-btns">
+        <button class="sysbtn" title="Minimize">_</button>
+        <button class="sysbtn" title="Maximize">&#9633;</button>
+        <button class="sysbtn sysbtn-close" title="Close">X</button>
+      </div>
+    </div>
+
+    <!-- Menu bar -->
+    <div class="menubar">
+      <span class="menu"><u>F</u>ile</span>
+      <span class="menu"><u>E</u>dit</span>
+      <span class="menu"><u>V</u>iew</span>
+      <span class="menu"><u>G</u>raph</span>
+      <span class="menu"><u>A</u>gent</span>
+      <span class="menu"><u>R</u>EA</span>
+      <span class="menu"><u>H</u>elp</span>
+    </div>
+
+    <!-- Toolbar strip -->
+    <div class="toolbar">
+      <button class="tbtn" id="btn-open" title="Open graph">Open</button>
+      <button class="tbtn" id="btn-reload" title="Reload">Reload</button>
+      <div class="tsep"></div>
+      <button class="tbtn" id="btn-fit">Fit</button>
+      <button class="tbtn" id="btn-layout">Layout</button>
+      <div class="tsep"></div>
+      <button class="tbtn tbtn-go" id="btn-agent">Send->Agent</button>
+      <button class="tbtn" id="btn-rea">REA Query</button>
+      <div class="tsep"></div>
+      <span class="tlabel">Nodes:</span>
+      <span class="tvalue" id="node-count">0</span>
+      <span class="tlabel">Edges:</span>
+      <span class="tvalue" id="edge-count">0</span>
+    </div>
+
+    <!-- Client area: 3-pane classic layout -->
+    <div class="client">
+
+      <!-- Left: module / function list (IDA-style) -->
+      <div class="pane pane-left">
+        <div class="pane-caption">Functions / Modules</div>
+        <div class="pane-body listbox" id="func-list">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Center: graph canvas -->
+      <div class="pane pane-center">
+        <div class="pane-caption">Call / Import Graph</div>
+        <div class="pane-body" id="cy-container"></div>
+      </div>
+
+      <!-- Right: properties + REA output -->
+      <div class="pane pane-right">
+        <div class="pane-caption">Selection / REA</div>
+        <div class="pane-body props">
+          <table class="proptable">
+            <tr><td class="pk">Address</td><td class="pv" id="sel-id">--------</td></tr>
+            <tr><td class="pk">Type</td><td class="pv" id="sel-kind">--------</td></tr>
+            <tr><td class="pk">Name</td><td class="pv" id="sel-label">--------</td></tr>
+            <tr><td class="pk">Degree</td><td class="pv" id="sel-degree">in:0  out:0</td></tr>
+          </table>
+          <div class="section-hdr">REA STATUS</div>
+          <div class="rea-box" id="rea-status">idle</div>
+          <div class="section-hdr">CORRELATION</div>
+          <div class="rea-box mono" id="corr-id">--------</div>
+          <div class="section-hdr">OUTPUT</div>
+          <pre class="logbox" id="logbox">ADRE ready.
+Load a graph or use the demo.
+Select nodes, then Send->Agent.
+</pre>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Status bar -->
+    <div class="statusbar">
+      <div class="sb-seg" id="status-left">Ready</div>
+      <div class="sb-seg sb-mid" id="status-mid">local</div>
+      <div class="sb-seg sb-right" id="status-right">REA: offline</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

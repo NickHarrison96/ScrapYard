@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ADRE runtime
+*.db
+*.sqlite
+*.sqlite3
+graph.json
+.cache/
+.tmp/
+
+# Node (if we later vendor Cytoscape)
+node_modules/
+
+# Secrets / local overrides
+.env
+.env.local
+*.pem

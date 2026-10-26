@@ -1,0 +1,32 @@
+{
+  "nodes": [
+    {"id": "core", "label": "core.py", "kind": "module", "path": "testbeds/hello_world/core.py"},
+    {"id": "services", "label": "services.py", "kind": "module", "path": "testbeds/hello_world/services.py"},
+    {"id": "utils", "label": "utils.py", "kind": "module", "path": "testbeds/hello_world/utils.py"},
+    {"id": "state", "label": "state.py", "kind": "module", "path": "testbeds/hello_world/state.py"},
+    {"id": "config", "label": "config.py", "kind": "module", "path": "testbeds/hello_world/config.py"},
+    {"id": "main", "label": "main.py", "kind": "module", "path": "testbeds/hello_world/main.py"},
+    {"id": "core.init_core", "label": "init_core()", "kind": "function"},
+    {"id": "core.process_request", "label": "process_request()", "kind": "function"},
+    {"id": "services.handle", "label": "handle()", "kind": "function"},
+    {"id": "services.register_handler", "label": "register_handler()", "kind": "function"},
+    {"id": "utils.helper", "label": "helper()", "kind": "function"}
+  ],
+  "edges": [
+    {"id": "imp_core_services", "source": "core", "target": "services", "kind": "imports"},
+    {"id": "imp_services_core", "source": "services", "target": "core", "kind": "imports"},
+    {"id": "imp_core_utils", "source": "core", "target": "utils", "kind": "imports"},
+    {"id": "imp_core_state", "source": "core", "target": "state", "kind": "imports"},
+    {"id": "imp_core_config", "source": "core", "target": "config", "kind": "imports"},
+    {"id": "imp_services_utils", "source": "services", "target": "utils", "kind": "imports"},
+    {"id": "imp_services_state", "source": "services", "target": "state", "kind": "imports"},
+    {"id": "imp_services_config", "source": "services", "target": "config", "kind": "imports"},
+    {"id": "imp_main_core", "source": "main", "target": "core", "kind": "imports"},
+    {"id": "imp_utils_state", "source": "utils", "target": "state", "kind": "imports"},
+    {"id": "call_process_handle", "source": "core.process_request", "target": "services.handle", "kind": "calls"},
+    {"id": "call_handle_init", "source": "services.handle", "target": "core.init_core", "kind": "calls"},
+    {"id": "call_init_register", "source": "core.init_core", "target": "services.register_handler", "kind": "calls"},
+    {"id": "call_core_helper", "source": "core.init_core", "target": "utils.helper", "kind": "calls"},
+    {"id": "call_services_helper", "source": "services.handle", "target": "utils.helper", "kind": "calls"}
+  ]
+}
